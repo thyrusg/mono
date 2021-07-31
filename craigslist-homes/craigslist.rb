@@ -14,18 +14,24 @@ def clean_up_urls(urls)
   urls.uniq!
 end
 
-craigslist_url = ENV["URL"]
+def junk_method
+  craigslist_url = ENV["URL"]
 
-craigslist_page = URI.open(craigslist_url)
+  craigslist_page = URI.open(craigslist_url)
 
-craigslist_document = Oga.parse_html(craigslist_page.read)
+  craigslist_document = Oga.parse_html(craigslist_page.read)
 
-anchor_elements = craigslist_document.css("a")
+  anchor_elements = craigslist_document.css("a")
 
-urls = []
+  urls = []
 
-anchor_elements.each { |element| urls << extract_url(element) }
+  anchor_elements.each { |element| urls << extract_url(element) }
 
-clean_up_urls(urls)
+  clean_up_urls(urls)
 
-puts "There are #{urls.count} URLs"
+  puts "There are #{urls.count} URLs"
+end
+
+
+class CraigslistListings
+end

@@ -1,2 +1,4 @@
 *.swp
 tinyhttp/spec/examples.txt
+gems
+gems/*

@@ -13,6 +13,7 @@ def check_required_options(options, required)
   end
 end
 
+
 OptionParser.new do |parser|
   parser.banner = "Usage: watcher [options]"
 

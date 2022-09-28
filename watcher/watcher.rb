@@ -13,6 +13,12 @@ def check_required_options(options, required)
   end
 end
 
+Signal.trap("INT") do |s|
+  puts "\nStopping watcher."
+  forever = false
+  File.new(options[:file]).close
+  exit 0
+end
 
 OptionParser.new do |parser|
   parser.banner = "Usage: watcher [options]"

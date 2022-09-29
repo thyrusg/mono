@@ -44,14 +44,13 @@ puts "===== Checking options ====="
 check_required_options(options, required_options)
 
 while forever # Loop forever
-  file = File.new(options[:file])
-  old_mtime = File.mtime(file)
-  puts "Sleeping #{options[:interval]}"
+  old_mtime = File.mtime(File.new(options[:file]))
+  #puts "Sleeping #{options[:interval]}"
   sleep options[:interval].to_i
-  new_mtime = File.mtime(file)
+  new_mtime = File.mtime(File.new(options[:file]))
   if new_mtime > old_mtime
     puts "#{options[:file]} changed. Running command."
     system(options[:command])
   end
-  file.close
+  File.new(options[:file]).close
 end
